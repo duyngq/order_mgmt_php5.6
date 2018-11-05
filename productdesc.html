@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Product Description Input</title>
+<style type="text/css">
+body {
+  height: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 100vw;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+$(window).on('load', function() { //load data after page loaded 
+    document.productDesc.product_desc.value = opener.document.getElementById("product_desc").value;
+});
+function updateParentContent() {
+	opener.document.getElementById("product_desc").value = document.productDesc.product_desc.value;
+}
+</script>
+</head>
+<body>
+<form name="productDesc">
+<textarea name="product_desc" id="product_desc" style="border: 1px solid black" placeholder="Click and write product description" oninput="updateParentContent()"></textarea>
+</form>
+</body>
+</html>

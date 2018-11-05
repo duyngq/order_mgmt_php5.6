@@ -1,0 +1,48 @@
+<?php
+error_reporting(E_ALL ^ E_DEPRECATED);
+session_start ();
+// If already logged in, refer to index page
+//if (isset ( $_SESSION ['loggedIn'] ) &&  $_SESSION ['loggedIn']) {
+//    header ( "location:index.php" );
+//}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/login.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="js/bootstrap-3.3.7%20.min.js"></script>
+    <script src="js/login.js"></script>
+    <title>SaigonAir Cargo</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="images/avatar_2x.png"/>
+        <div class="err" id="login_err"></div>
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" method="get">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <!--<div id="remember" class="checkbox">-->
+            <!--<label>-->
+            <!--<input type="checkbox" value="remember-me"> Remember me-->
+            <!--</label>-->
+            <!--</div>-->
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" id="btnLogin">Login</button>
+        </form><!-- /form -->
+        <!--<a href="#" class="forgot-password">-->
+        <!--Forgot the password?-->
+        <!--</a>-->
+    </div><!-- /card-container -->
+</div><!-- /container -->
+</body>
+
+</html>

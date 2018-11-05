@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Fee Input</title>
+<style type="text/css">
+body {
+	height: 100%;
+}
+
+textarea {
+	width: 100%;
+	height: 100vw;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(window).on('load', function() { //load data after page loaded 
+	    additionalFeeValue = opener.document.getElementById("product_additional").value.replace(/\n\r?/g, '<br/>');;
+	    fees = additionalFeeValue.split("<br/>"); // get each line
+	    for ( i = 1; i < fees.length; i++) { //skip title as 0
+	        if (fees[i]) {
+	            fee = fees[i].split(","); //get each fee details
+	            if ( fee.length > 1) {
+		            weight = "weight" + ( i - 1 );
+		            price = "price" + ( i - 1 );
+		            total = "total" + ( i - 1 );
+	            	document.getElementById(weight).value = fee[0];
+	                document.getElementById(price).value = fee[1];
+	                document.getElementById(total).value = fee[2];
+	            } else {
+	                fee = fees[i].split(":"); //get the total (the last one) and additional fee
+	                if ( fee.length > 1) {
+	                    if (i == fees.length - 1) {
+	                    	document.addFee.prm_sum.value = fee[1].trim();
+	                    } else {
+	                    	document.addFee.add_fee.value = fee[1].trim();
+	                    }
+	                }
+	            }
+	        }
+	    }
+	});
+	
+	function updateParentContent() {
+		opener.document.getElementById("product_additional").value = "weight,price,total";
+		total = parseFloat(document.addFee.total0.value);
+		if (total > 0 ) {
+			opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight0.value + "," + document.addFee.price0.value + "," + document.addFee.total0.value ;
+		}
+        
+        total1 = parseFloat(document.addFee.total1.value);
+        if (total1 > 0 ) {
+            opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight1.value + "," + document.addFee.price1.value + "," + document.addFee.total1.value ;
+        }
+        
+        total2 = parseFloat(document.addFee.total2.value);
+        if (total2 > 0 ) {
+            opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight2.value + "," + document.addFee.price2.value + "," + document.addFee.total2.value ;
+        }
+        
+        total3 = parseFloat(document.addFee.total3.value);
+        if (total3 > 0 ) {
+            opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight3.value + "," + document.addFee.price3.value + "," + document.addFee.total3.value ;
+        }
+        
+        total4 = parseFloat(document.addFee.total4.value);
+        if (total4 > 0 ) {
+            opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight4.value + "," + document.addFee.price4.value + "," + document.addFee.total4.value ;
+        }
+
+        total5 = parseFloat(document.addFee.total5.value);
+        if (total5 > 0 ) {
+            opener.document.getElementById("product_additional").value += "\n" + document.addFee.weight5.value + "," + document.addFee.price5.value + "," + document.addFee.total5.value ;
+        }
+        
+        opener.document.getElementById("product_additional").value +=
+		 "\n\n Additional fee : " +  document.addFee.add_fee.value +
+		 "\n Total          : " +  document.addFee.prm_sum.value;
+	}
+</script>
+<script type="text/javascript" src="js/util.js"></script>
+</head>
+<body>
+<form name="addFee">
+<table width="100%" border="0" id='productTbl'>
+	<tr>
+		<th>Weight</th>
+		<th>Price (USD/lb)</th>
+		<th>Total</th>
+	</tr>
+	<tr>
+	    <td><input name="proDesc0" type="text" id="proDesc0" size="30"/></td>
+		<td><input name="weight0" type="text" id="weight0" value="0" size="30" onchange="calFeeAmount('weight0', 'price0', 'total0');calTotal();updateParentContent();"/></td>
+		<td><input name="price0" type="text" id="price0" value="0" size="30" onchange="calFeeAmount('weight0', 'price0', 'total0');calTotal();updateParentContent();" /></td>
+		<td><input name="total0" type="text" id="total0" value="0" size="30" readonly="readonly" /></td>
+	</tr>
+	<tr>
+	    <td><input name="proDesc" type="text" id="proDesc0" size="30"/></td>
+        <td><input name="weight1" type="text" id="weight1" value="0" size="30" onchange="calFeeAmount('weight1', 'price1', 'total1');calTotal();updateParentContent();"/></td>
+        <td><input name="price1" type="text" id="price1" value="0" size="30" onchange="calFeeAmount('weight1', 'price1', 'total1');calTotal();updateParentContent();" /></td>
+        <td><input name="total1" type="text" id="total1" value="0" size="30" readonly="readonly" /></td>
+    </tr>
+    <tr>
+        <td><input name="proDesc2" type="text" id="proDesc0" size="30"/></td>
+        <td><input name="weight2" type="text" id="weight2" value="0" size="30" onchange="calFeeAmount('weight2', 'price2', 'total2');calTotal();updateParentContent();"/></td>
+        <td><input name="price2" type="text" id="price2" value="0" size="30" onchange="calFeeAmount('weight2', 'price2', 'total2');calTotal();updateParentContent();" /></td>
+        <td><input name="total2" type="text" id="total2" value="0" size="30" readonly="readonly" /></td>
+    </tr>
+    <tr>
+        <td><input name="proDesc3" type="text" id="proDesc0" size="30"/></td>
+        <td><input name="weight3" type="text" id="weight3" value="0" size="30" onchange="calFeeAmount('weight3', 'price3', 'total3');calTotal();updateParentContent();"/></td>
+        <td><input name="price3" type="text" id="price3" value="0" size="30" onchange="calFeeAmount('weight3', 'price3', 'total3');calTotal();updateParentContent();" /></td>
+        <td><input name="total3" type="text" id="total3" value="0" size="30" readonly="readonly" /></td>
+    </tr>
+    <tr>
+        <td><input name="proDesc4" type="text" id="proDesc0" size="30"/></td>
+        <td><input name="weight4" type="text" id="weight4" value="0" size="30" onchange="calFeeAmount('weight4', 'price4', 'total4');calTotal();updateParentContent();"/></td>
+        <td><input name="price4" type="text" id="price4" value="0" size="30" onchange="calFeeAmount('weight4', 'price4', 'total4');calTotal();updateParentContent();" /></td>
+        <td><input name="total4" type="text" id="total4" value="0" size="30" readonly="readonly" /></td>
+    </tr>
+    <tr>
+        <td><input name="proDesc0" type="text" id="proDesc0" size="30"/></td>
+        <td><input name="weight5" type="text" id="weight5" value="0" size="30" onchange="calFeeAmount('weight5', 'price5', 'total5');calTotal();updateParentContent();"/></td>
+        <td><input name="price5" type="text" id="price5" value="0" size="30" onchange="calFeeAmount('weight5', 'price5', 'total5');calTotal();updateParentContent();" /></td>
+        <td><input name="total5" type="text" id="total5" value="0" size="30" readonly="readonly" /></td>
+    </tr>
+    
+    <!-- Additional fee and total -->
+    <tr>
+        <td><p>Additional Fee :</p></td>
+        <td><input name="add_fee" type="text" id="add_fee" value="0" size="30" onchange="calTotal();updateParentContent();"/></td>
+    </tr>
+    <tr>
+        <td><p>Total (*)</p></td>
+        <td><input name="prm_sum" type="text" id="prm_sum" value="0" size="30" readonly="readonly"/></td>
+    </tr>
+    
+</table>
+</form>
+</body>
+</html>
